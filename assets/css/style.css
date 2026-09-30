@@ -1,0 +1,225 @@
+/* =====================================================================
+   style.css
+   Custom styling layered on top of Bootstrap 5 for a modern,
+   professional look across the Talent Booking Management System.
+   ===================================================================== */
+
+:root {
+    --tb-primary: #4f46e5;
+    --tb-primary-dark: #3730a3;
+    --tb-accent: #f59e0b;
+    --tb-bg-soft: #f8f9fc;
+}
+
+body {
+    background-color: var(--tb-bg-soft);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #1f2937;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ----- Buttons ----- */
+.btn-primary {
+    background-color: var(--tb-primary);
+    border-color: var(--tb-primary);
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--tb-primary-dark);
+    border-color: var(--tb-primary-dark);
+}
+.btn-outline-primary {
+    color: var(--tb-primary);
+    border-color: var(--tb-primary);
+}
+.btn-outline-primary:hover {
+    background-color: var(--tb-primary);
+    border-color: var(--tb-primary);
+}
+
+/* ----- Cards ----- */
+.card {
+    border-radius: 0.75rem;
+}
+.card.shadow-sm {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+}
+.talent-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+.talent-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+.talent-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    background-color: #e5e7eb;
+}
+
+/* ----- Hero section ----- */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, var(--tb-primary) 0%, var(--tb-primary-dark) 100%);
+    color: #fff;
+    padding: 5rem 0;
+    overflow: hidden;
+}
+.hero-section h1 {
+    font-weight: 800;
+}
+
+/* ----- Hero rotating background images ----- */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+.hero-bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: translateX(-100%);
+    animation-name: heroSlideAcross;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(79,70,229,0.85) 0%, rgba(55,48,163,0.85) 100%);
+}
+.hero-section .container {
+    z-index: 1;
+}
+/* Each slide enters from the left edge, sits in view, then continues
+   moving out past the right edge while the next slide (offset by its
+   own animation-delay) enters behind it. Percentages are tuned for 7
+   slides at 4s each (28s full cycle) — if you change the slide count
+   in index.php, adjust these or the timing will drift slightly. */
+@keyframes heroSlideAcross {
+    0%   { transform: translateX(-100%); }
+    4%   { transform: translateX(0%); }
+    11%  { transform: translateX(0%); }
+    15%  { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg-slide { animation: none; transform: none; opacity: 0; }
+}
+
+/* ----- Category pills ----- */
+.category-pill {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 2rem;
+    padding: 0.6rem 1.2rem;
+    display: inline-block;
+    transition: all 0.15s ease;
+    color: #1f2937;
+    font-weight: 500;
+}
+.category-pill:hover, .category-pill.active {
+    background: var(--tb-primary);
+    border-color: var(--tb-primary);
+    color: #fff;
+}
+
+/* ----- Dashboard stat cards ----- */
+.stat-card {
+    border-radius: 0.75rem;
+    border: none;
+    color: #fff;
+    padding: 1.5rem;
+}
+.stat-card .stat-icon {
+    font-size: 2rem;
+    opacity: 0.85;
+}
+.stat-card .stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+.stat-card.bg-purple { background: linear-gradient(135deg, #6366f1, #4338ca); }
+.stat-card.bg-teal   { background: linear-gradient(135deg, #14b8a6, #0f766e); }
+.stat-card.bg-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.stat-card.bg-rose    { background: linear-gradient(135deg, #f43f5e, #be123c); }
+
+/* ----- Sidebar (dashboards) ----- */
+.dashboard-sidebar {
+    background: #1f2937;
+    min-height: calc(100vh - 56px);
+    color: #d1d5db;
+}
+.dashboard-sidebar .nav-link {
+    color: #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1rem;
+    margin-bottom: 0.25rem;
+}
+.dashboard-sidebar .nav-link:hover,
+.dashboard-sidebar .nav-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+.dashboard-sidebar .nav-link i {
+    width: 22px;
+    display: inline-block;
+}
+
+/* ----- Rating stars ----- */
+.rating-input .bi-star,
+.rating-input .bi-star-fill {
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #d1d5db;
+}
+.rating-input .bi-star-fill {
+    color: #f59e0b;
+}
+
+/* ----- Testimonial cards ----- */
+.testimonial-card {
+    border-left: 4px solid var(--tb-primary);
+    background: #fff;
+    border-radius: 0.5rem;
+}
+
+/* ----- Utility ----- */
+.avatar-sm {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.avatar-lg {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.cover-banner {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    background-color: #e5e7eb;
+}
+.gallery-thumb {
+    height: 140px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .hero-section { padding: 3rem 0; }
+    .dashboard-sidebar { min-height: auto; }
+}

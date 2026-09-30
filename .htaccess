@@ -1,0 +1,3 @@
+# Root .htaccess
+# Prevents directory listing at the project root.
+Options -Indexes

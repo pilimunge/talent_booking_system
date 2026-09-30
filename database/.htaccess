@@ -1,0 +1,4 @@
+# Block direct HTTP access to the SQL dump and hash-generator script.
+# Import the .sql file via phpMyAdmin's file picker (which reads from disk,
+# not over HTTP), so this restriction does not affect installation.
+Require all denied
